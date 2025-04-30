@@ -3,14 +3,14 @@ export function openConnection(payload) {
     let id = null
 
     if (!payload.id) {
-      id = await fetch('http://wstest-cli.jingskycloud.net/ws/id').then(res => res.json())
+      id = await fetch('http://192.252.189.39/ws/id').then(res => res.json())
       //localStorage.setItem('id', id.id)
       dispatch({
         type: 'FETCH_ID_SUCCESS',
         payload: id
       })
     }
-    const ws = new WebSocket(`ws://wstest-cli.jingskycloud.net/ws/?id=${id ? id.id : payload.id}`)
+    const ws = new WebSocket(`ws://192.252.189.39/ws/?id=${id ? id.id : payload.id}`)
     
     ws.onmessage = (e) => {
       const payload = JSON.parse(e.data)
